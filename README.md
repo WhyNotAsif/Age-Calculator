@@ -1,14 +1,14 @@
 # Age Calculator
 
-A professional, fully responsive age calculator web application with dual calculation modes, beautiful animations, and comprehensive age breakdowns.
+A professional, fully responsive age calculator web application with dual calculation modes, rich insights, beautiful glassmorphism animations, and comprehensive age breakdowns.
 
-**Live Demo:** [https://geniouscalc.blogspot.com/](https://geniouscalc.blogspot.com/)
+**Live Demo:** [https://why-age-calculator.vercel.app/](https://why-age-calculator.vercel.app/)
 
 ---
 
 ## Overview
 
-This Age Calculator is a lightweight, standalone HTML application that allows users to calculate their exact age or any duration in multiple formats. Built with vanilla JavaScript, HTML5, and CSS3, it requires no external dependencies and can be hosted anywhere or run offline.
+Age Calculator Pro is a modern, feature-rich web application that goes far beyond simple year math. Enter your birth date (or a duration) and instantly get a rich dashboard of insights — astrological, cultural, planetary, and health-based — wrapped in a responsive glassmorphism UI with light/dark themes.
 
 ---
 
@@ -17,10 +17,11 @@ This Age Calculator is a lightweight, standalone HTML application that allows us
 ### 🎯 Dual Calculation Modes
 
 #### 1. Calculate by Birth Date
-- Select year from dropdown (1900 to current year)
-- Choose month from dropdown (January to December)
-- Pick day from dropdown (1-31, auto-adjusts based on month/year)
+- Select **Year** from dropdown (1900 to current year)
+- Choose **Month** from dropdown (January to December)
+- Pick **Day** from dropdown (1–31, auto-adjusts based on month/year)
 - Intelligent date validation to prevent future dates
+- Leap-year aware day selector
 
 #### 2. Calculate by Duration
 - Enter custom durations using multiple inputs:
@@ -29,195 +30,131 @@ This Age Calculator is a lightweight, standalone HTML application that allows us
   - **Weeks** input field
   - **Days** input field
 - Supports any combination of inputs
-- All fields work together to calculate total duration
+- Back-calculates your birth date from the entered duration
 
-### 📊 Comprehensive Results Display
+#### 🔄 Auto-Reset Inputs
+- Input fields clear automatically after a result is generated for a clean next-calculation experience.
 
-When you calculate age, the application displays:
+### 🎂 Precise Age Breakdown
+- Exact **Years · Months · Days** calculation
+- Handles **leap years** and varying month lengths (28/30/31) precisely
+- Displays the **exact day of the week** you were born (e.g., "You were born on a Tuesday")
+- **Leap Year Baby** badge if applicable
 
-1. **Success Message**: "Age Calculated Successfully!"
-2. **Reference Date**: Shows the date in YYYY-MM-DD format
-3. **Age Breakdown**: Years, Months, and Days
-4. **Total Conversions**:
-   - Total Years
-   - Total Months
-   - Total Weeks
-   - Total Days
-   - Total Hours
-   - Total Seconds
+### 📊 Life Progress Visualization
+- **Circular SVG progress ring** + linear progress bar
+- Shows percentage of an 80-year life expectancy lived
+- Displays remaining years ahead in real time
+
+### ⏳ Live Next-Birthday Countdown
+- Real-time **Days · Hours · Minutes · Seconds** ticker until your next birthday
+- Updates every second
+
+### 🔮 Astrological & Cultural Insights
+- **Western Zodiac Sign** with emoji (Aries → Pisces)
+- **Chinese Zodiac Animal** based on birth year
+- **Birthstone** for your birth month
+
+### 📈 Total Stats Dashboard
+A responsive grid showing your age in:
+- **Years · Months · Weeks · Days · Hours · Minutes · Seconds**
+
+### ❤️ Health-Based Fun Facts
+Estimated totals since birth:
+- **Heartbeats** (~70 bpm average)
+- **Breaths taken** (~16 per minute)
+- **Hours slept** (~8 hours per day)
+
+### 🪐 Age Across the Solar System
+See how old you'd be on **Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune**, and Pluto — based on each planet's orbital period.
 
 ### 🎨 Design & User Experience
-
-#### Visual Features
-- **Animated Gradient Background**: Smooth, continuous color transitions with light pastel colors (pink, blue, green, yellow, peach, cyan)
-- **Modern UI Design**: Clean, professional interface with rounded corners and smooth transitions
-- **Interactive Elements**: Hover effects, button animations, and smooth result transitions
-- **Color-Coded Results**: Easy-to-read result cards with gradient backgrounds
-
-#### Responsive Design
-- **Mobile-First Approach**: Optimized for all screen sizes
-- **Android Compatible**: Perfect display on all Android devices
-- **Desktop Optimized**: Scales beautifully on PC monitors
-- **Tablet Support**: Ideal viewing on tablets (768px breakpoint)
-- **Small Phone Support**: Works great on devices as small as 360px
-- **Adaptive Layout**: Elements stack and resize intelligently based on screen size
-
-### 🔍 SEO Optimization
-
-The application is fully optimized for search engines with:
-- Comprehensive meta descriptions
-- Targeted keywords for age calculation tools
-- Semantic HTML structure
-- Optimized title tags
-- Mobile-friendly design (Google ranking factor)
-- Fast loading time (no external dependencies)
-
-**Target Keywords:**
-- age calculator
-- calculate age
-- age in years
-- age in months
-- age in days
-- birthday calculator
-- age counter
-- how old am I
-- exact age calculator
-- age calculation tool
-- date calculator
-- birth date calculator
-- age in seconds
-- age in hours
-- free age calculator
-
-### ⚡ Performance Features
-
-- **Zero Dependencies**: Pure vanilla JavaScript, no frameworks required
-- **Instant Loading**: Single HTML file under 20KB
-- **Offline Capable**: Works without internet connection
-- **Cross-Browser Compatible**: Works on all modern browsers
-- **No Database Required**: All calculations done client-side
-- **Privacy Focused**: No data collection or tracking
+- **Glassmorphism aesthetic** with animated gradient backgrounds
+- **Dark / Light mode toggle** (auto-detects system preference)
+- **Fully responsive** — mobile, tablet, desktop
+- Smooth hover effects, fade-up animations, and gradient text accents
+- HSL-based semantic design tokens (no hardcoded colors)
+- Adaptive grid layout (2 → 3 → 7 columns across breakpoints)
 
 ### 🛡️ Validation & Error Handling
-
-- Input validation for all fields
-- Future date prevention
-- Empty field detection
+- Validates future dates, empty inputs, and mismatched day/month combinations
+- Dynamically caps day selector based on selected month + leap year status
 - User-friendly error messages
-- Real-time day adjustment based on month/year selection
 
 ---
 
-## Technical Specifications
+## Core Functions
 
-### Technologies Used
-- **HTML5**: Semantic markup and structure
-- **CSS3**: Modern styling with animations
-  - Flexbox and Grid layouts
-  - CSS animations and transitions
-  - Media queries for responsiveness
-  - Gradient backgrounds
-- **Vanilla JavaScript**: All calculations and interactions
-  - Date manipulation
-  - DOM manipulation
-  - Event handling
-  - Dynamic dropdown population
+Located in `src/lib/age.ts`:
 
-### Browser Support
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Opera (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
+| Function | Purpose |
+|---|---|
+| `calculateAge(birth)` | Returns precise `{ years, months, days, totalDays }` breakdown. |
+| `zodiacSign(month, day)` | Western zodiac sign + emoji. |
+| `chineseZodiac(year)` | Chinese zodiac animal + emoji. |
+| `birthstone(month)` | Birthstone for given month. |
+| `dayOfWeek(date)` | Day name the user was born. |
+| `isLeapYear(year)` | Leap year detector. |
+| `daysInMonth(year, month)` | Accurate day count for any month. |
+| `nextBirthday(birth, now)` | Date of upcoming birthday. |
+| `countdown(target, now)` | Live D/H/M/S countdown object. |
+| `planets` | Orbital-period dataset for cross-planet age conversion. |
+
+---
+
+## 🛠️ Tech Stack
+
+- **React 18** + **TypeScript**
+- **Vite** for lightning-fast builds
+- **Tailwind CSS** with an HSL-based semantic design token system
+- **shadcn/ui** primitives (Button, Input, Select)
+- **lucide-react** icons
+- **SVG** for the circular life-progress indicator
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+├── lib/age.ts          # All date math, zodiac, countdown & planetary logic
+├── pages/Index.tsx     # Main UI: input modes, result dashboard, countdown
+├── index.css           # Glassmorphism tokens, gradients, animations
+└── components/ui/      # shadcn primitives
+```
+
+---
+
+## 🎯 Highlights for Portfolio
+
+- Built a **modular pure-function calculation engine** (fully unit-testable, no UI coupling).
+- Designed a **token-driven design system** (HSL variables, gradient utilities, glass surfaces) that cleanly supports light/dark themes.
+- Implemented a **real-time countdown** using `setInterval` + React state without performance issues.
+- Rendered a **custom SVG circular progress ring** with animated stroke-dashoffset.
+- Delivered a **fully responsive** layout using Tailwind's grid system (2 → 3 → 7 columns across breakpoints).
+- Integrated **astrological, cultural, health, and planetary** data layers into a single cohesive dashboard.
 
 ---
 
 ## Use Cases
 
-1. **Personal Use**: Calculate your exact age
-2. **Education**: Teaching date and time calculations
-3. **Age Verification**: Quick age checks
-4. **Event Planning**: Calculate time until birthdays or events
-5. **Historical Calculations**: Calculate ages from historical dates
-6. **Professional**: HR departments, registration forms
-7. **Medical**: Patient age calculations
+1. **Personal**: Calculate your exact age with rich insights
+2. **Education**: Teaching date/time calculations, astronomy, and zodiac systems
+3. **Event Planning**: Real-time countdown to next birthday
+4. **Portfolio Demo**: Showcase React + design-system skills
 
 ---
 
-## Deployment Options
+## Browser Support
 
-### Option 1: Shared Hosting (Hostinger)
-1. Download the `index.html` file
-2. Upload to your hosting via FTP or File Manager
-3. Access directly through your domain
-
-### Option 2: Local Device
-1. Download the `index.html` file
-2. Double-click to open in any web browser
-3. Works offline, no server required
-
-### Option 3: GitHub Pages
-1. Upload to GitHub repository
-2. Enable GitHub Pages
-3. Access via GitHub Pages URL
-
-### Option 4: Any Web Server
-Compatible with all web servers (Apache, Nginx, etc.)
-
----
-
-## Monetization Ready
-
-The application is optimized for monetization:
-- SEO-friendly structure for organic traffic
-- Ad placement ready (header, sidebar, footer areas)
-- Fast loading for better ad performance
-- Mobile-optimized for mobile ad revenue
-- High user engagement with interactive features
-
----
-
-## Project Statistics
-
-- **File Size**: ~19KB (single HTML file)
-- **Lines of Code**: ~590 lines
-- **Load Time**: <100ms
-- **Mobile Score**: 100/100
-- **Accessibility**: WCAG 2.1 compliant
-- **No External Requests**: 100% self-contained
+- Chrome, Firefox, Safari, Edge, Opera (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
 ---
 
 ## Copyright
 
-© 2025 Age Calculator. All Rights Reserved.
-
----
-
-## Future Enhancements
-
-Potential features for future versions:
-- Print functionality
-- Share results on social media
-- Calculation history with local storage
-- Additional calculators (retirement, zodiac sign)
-- Multi-language support
-- Dark mode theme
-- Export results as PDF
-
----
-
-## Contact & Support
-
-For questions, suggestions, or support, please visit:
-**[https://geniouscalc.blogspot.com/](https://geniouscalc.blogspot.com/)**
-
----
-
-## License
-
-This project is available for personal and commercial use.
+© 2025 Age Calculator Pro. All Rights Reserved.
 
 ---
 
